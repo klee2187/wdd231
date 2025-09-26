@@ -335,3 +335,69 @@ padding: 0.5em 1em;
   overflow: hidden;
 }
 
+#park-footer {
+  background-image: url(https://byui-cse.github.io/wdd231-course/images/topo_pattern.png);
+}
+
+.intro h1 {
+  font-family: var(--bs-font-serif);
+  margin-top: 2em;
+}
+
+.intro p {
+  font-family: var(--bs-font-sans-serif);
+}
+
+.intro {
+  padding: 1rem;
+}
+
+.info {
+  padding: 1rem;
+  gap: 20px;
+}
+
+.media-card-content h2, .media-card-content p {
+  color: var(--bs-black);
+}
+
+.media-card-content p {
+  font-size: 1.1rem;
+}
+
+.media-card-content a {
+  text-decoration: none;
+}
+
+.media-card img {
+  max-width: 100%;
+}
+
+#contact-info {
+  font-family: var(--bs-font-serif);
+  font-size: .9rem;
+  text-transform: uppercase;
+}
+
+#park-footer {
+  padding: 1.5rem;
+}
+
+#address, #phone {
+  font-size: .9rem;
+  line-height: .5;
+}
+
+
+@media (min-width: 768px) {
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .media-card {
+    flex: 1 1 0;
+  }
+}
