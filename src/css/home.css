@@ -1,0 +1,32 @@
+.intro h1 {
+  font-family: var(--bs-font-serif);
+  margin-top: 2em;
+}
+
+.intro p {
+  font-family: var(--bs-font-sans-serif);
+}
+
+.intro {
+  padding: 1rem;
+}
+
+.info {
+  padding: 1rem;
+  gap: 20px;
+}
+
+
+
+@media (min-width: 768px) {
+
+  .info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .media-card {
+    flex: 1 1 0;
+  }
+}

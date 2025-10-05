@@ -1,0 +1,19 @@
+#park-footer {
+  background-image: url(https://byui-cse.github.io/wdd231-course/images/topo_pattern.png);
+}
+
+
+#contact-info {
+  font-family: var(--bs-font-serif);
+  font-size: .9rem;
+  text-transform: uppercase;
+}
+
+#park-footer {
+  padding: 1.5rem;
+}
+
+#address, #phone {
+  font-size: .9rem;
+  line-height: 5;
+}

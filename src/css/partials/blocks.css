@@ -1,0 +1,15 @@
+.media-card-content h2, .media-card-content p {
+  color: var(--bs-black);
+}
+
+.media-card-content p {
+  font-size: 1.1rem;
+}
+
+.media-card-content a {
+  text-decoration: none;
+}
+
+.media-card img {
+  max-width: 100%;
+}
