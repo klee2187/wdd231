@@ -7,16 +7,22 @@
   font-family: var(--bs-font-sans-serif);
 }
 
-.intro {
+.intro > h1 {
   padding: 1rem;
+  font-family: var(--bs-font-serif);
+  font-weight: normal;
 }
 
 .info {
   padding: 1rem;
   gap: 20px;
+  display: flex;
+  gap: 1em;
 }
 
-
+.info > * {
+  flex: 1;
+}
 
 @media (min-width: 768px) {
 
@@ -24,6 +30,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: stretch;
   }
 
   .media-card {
