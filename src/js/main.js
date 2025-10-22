@@ -1,9 +1,5 @@
 import { getParkData, getInfoLinks } from "./parkService.mjs";
-import { getParkData, getInfoLinks } from "./parkService.mjs";
-import setHeaderFooter from "./setHeaderFooter.mjs";
 import { mediaCardTemplate } from "./templates.mjs";
-const parkData = getParkData();
-
 
 export function getInfoLinks(data) {
     return parkInfoLinks.map((item) => {
@@ -21,17 +17,15 @@ function parkInfoTemplate(info) {
 };
 
 function mediaCardTemplate(data) {
-    const linkColorStyle = `color: var(--bs-link-color);`;
-
     return`
         <div class="media-card">
           <img src="${data.image}" alt="${data.name.replace(' &#x203A;', '')}">
             <div class="media-card-content">
                 <a href="${data.link}">
-                    <h2 style="${linkColorStyle}">${data.name}</h2>
+                    <h2 >${data.name}</h2>
                 </a>
                 <a href="${data.link}">
-                    <p style="${linkColorStyle}">${data.description}</p>
+                    <p >${data.description}</p>
                 </a>
             </div>
         </div>`;
@@ -78,10 +72,22 @@ function setHeaderInfo(data) {
     document.querySelector(".hero-text").innerHTML = parkInfoTemplate(data);
 }
 
+function setupMenuToggles() {
+    const splitButtons = document.querySelectorAll('.global-nav__split-button__toggle');
+    splitButtons.forEach(button => {
+        button.addEventListener('click', () => {
+    
+            const splitButtonContainer = button.closest('.global-nav__split-button');
+            if (splitButtonContainer) {
+                splitButtonContainer.classList.toggle('open');
+            }
+        });
+    });
+}
+
 function setParkIntro(data) {
     const parkIntro = document.querySelector(".intro");
-    parkIntro.innerHTML = `<h1>${parkData.fullname}</h1>
-    <p>${parkData.description}</p>`;
+
     parkIntro.innerHTML = `<h1>${data.fullname}</h1>
     <p>${data.description}</p>`;
 }
@@ -112,12 +118,6 @@ if (menuButton && navMenu) {
         navMenu.classList.toggle('show');
     });
 };
-
-function setParkInfoLinks(data) {
-   const parkIntro = document.querySelector(".info");
-   const html = data.map(mediaCardTemplate);
-   parkIntro.insertAdjacentHTML
-}
 
 const parkInfoLinks = [
     {
@@ -151,6 +151,8 @@ async function init() {
     const finalLinks = getInfoLinks(parkData.images);
 
     renderMediaCards(finalLinks, ".info");
+
+    setupMenuToggles();
 
     } catch (error) {
         console.error("Initialization failed:", error)
