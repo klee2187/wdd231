@@ -1,17 +1,20 @@
-.media-card-content h2, .media-card-content p {
+.media-card a {
+  text-decoration: none;
   color: var(--bs-black);
 }
 
-.media-card-content p {
-  font-size: 1.1rem;
+.media-card a:hover {
+  color: var(--bs-crete);
 }
 
-.media-card-content a {
-  text-decoration: none;
+.media-card h3 {
+  margin: 0.5rem 0;
 }
 
-.media-card img {
-  max-width: 100%;
+.media-card > p {
+  font-size: 0.8em;
+  line-height: 1.5;
+  color: var(--bs-grey-2);
 }
 
 /* Skip links styling */

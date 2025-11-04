@@ -11,6 +11,10 @@
   overflow: hidden;
 }
 
+.disclaimer {
+  padding: 0 1em;
+}
+
 .alert-information {
   color: var(--alert-information);
 }

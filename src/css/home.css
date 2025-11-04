@@ -1,6 +1,11 @@
-.intro h1 {
+.intro {
+  padding: 1em;
+}
+
+.intro h1, main > h1 {
   font-family: var(--bs-font-serif);
   margin-top: 2em;
+  font-weight: normal;
 }
 
 .intro p {
@@ -14,9 +19,10 @@
 }
 
 .info {
-  padding: 1rem;
+  padding: 1em;
   gap: 20px;
   display: flex;
+  flex-direction: column;
   gap: 1em;
 }
 
@@ -24,16 +30,11 @@
   flex: 1;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
 
   .info {
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: stretch;
-  }
-
-  .media-card {
-    flex: 1 1 0;
   }
 }

@@ -1,65 +1,12 @@
-import { getParkData, getInfoLinks } from "./parkService.mjs";
-import { mediaCardTemplate } from "./templates.mjs";
-
-export function getInfoLinks(data) {
-    return parkInfoLinks.map((item) => {
-        const updatedItem = { ...item };
-        updatedItem.image = data[updatedItem.imageIndex].url;
-        return updatedItem;
-    });
-}
-
-function parkInfoTemplate(info) {
-    return `
-        <h1>${info.name}</h1>
-        <p>${info.designation}<br>${info.states}</p>
-    `;
-};
-
-function mediaCardTemplate(data) {
-    return`
-        <div class="media-card">
-          <img src="${data.image}" alt="${data.name.replace(' &#x203A;', '')}">
-            <div class="media-card-content">
-                <a href="${data.link}">
-                    <h2 >${data.name}</h2>
-                </a>
-                <a href="${data.link}">
-                    <p >${data.description}</p>
-                </a>
-            </div>
-        </div>`;
-};
-
-function getMailingAddress(addresses) {
-    const mailing = addresses.find((address) => address.type === "Mailing");
-    return mailing;
-}
-
-function getVoicePhone(numbers) {
-    const voice = numbers.find((number) => number.type === "Voice");
-    return voice ? voice.phoneNumber : 'N/A';
-}
-
-function parkFooterTemplate(info) {
-    const mailing = getMailingAddress(info.addresses);
-    const voice = getVoicePhone(info.contacts.phoneNumbers);
-
-    return`
-      <div id="contact-info">
-        <h3>Contact Info</h3>
-      </div>
-      <div id="address">
-        <h4>Mailing Address: </h4>
-        <p>${mailing.line1}</p>
-        <p>${mailing.city}, ${mailing.stateCode}, ${mailing.postalCode}</p>
-      </div>
-      <div id="phone">
-        <h4>Phone:</h4>
-        <p>${voice}</p>
-      </div>
-      `;
-}
+import { 
+    getParkData, 
+    getInfoLinks
+} from "./parkService.mjs";
+import { 
+    mediaCardTemplate,
+    parkInfoTemplate,
+    footerTemplate
+} from "./templates.mjs";
 
 function setHeaderInfo(data) {
 
@@ -100,9 +47,12 @@ function renderMediaCards(links, parentSelector) {
     }
 } 
 
-function setParkFooter(info) {
-    const parkFooter = document.getElementById("park-footer");
-    parkFooter.innerHTML = parkFooterTemplate(info);
+function setParkFooter(data) {
+    const footerElement = document.querySelector(".park-footer");
+
+    if (footerElement) {
+        footerElement.innerHTML = footerTemplate(data);
+    }
 }
 
 function setHeaderFooter(data) {
@@ -110,35 +60,24 @@ function setHeaderFooter(data) {
     setParkFooter(data);
 }
 
-const menuButton = document.getElementById('global-nav-toggle');
-const navMenu = document.querySelector('.global-nav');
+function enableNavigation() {
+    const menuButton = document.querySelector("#global-nav-toggle");
+    menuButton.addEventListener("click", (ev) => {
+        let target = ev.target;
 
-if (menuButton && navMenu) {
-    menuButton.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-    });
-};
+    document.querySelector(".global-nav").classList.toggle("show");
 
-const parkInfoLinks = [
-    {
-        name: "Current Conditions &#x203A;",
-        link: "conditions.html",
-        imageIndex: 2,
-        description: "See what conditions to expect in the parkbefore leaving for your trip!"
-    },
-    {
-        name: "Fees and Passes &#x203A;",
-        link: "fees.html",
-        imageIndex: 3,
-        description: "Learn about the fees and passes that are available."
-    },
-    {
-        name: "Visitor Centers &#x203A;",
-        link: "visitor_centers.html",
-        imageIndex: 9,
-        description: "Learn about the visitor centers in the park."
+    if (target.tagName != "BUTTON" ) {
+        target = target.closest("button");
     }
-];
+    if(document.querySelector(".global-nav").classList.contains("show")) {
+        target.setAttribute("aria-expanded", "true");
+    } else {
+        target.setAttribute("aria-expanded", "false");
+    }
+    console.log("toggle");
+    });
+}
 
 async function init() {
     try {
@@ -152,13 +91,14 @@ async function init() {
 
     renderMediaCards(finalLinks, ".info");
 
+    enableNavigation();
+
     setupMenuToggles();
 
     } catch (error) {
         console.error("Initialization failed:", error)
 
     }
-
 }
 
 init();

@@ -1,28 +1,43 @@
+main {
+    padding: 1rem;
+}
+
 .alerts > ul {
     list-style: none;
     padding: 0;
 }
 
-.alert {
+.alerts {
     margin: 0.5rem;
-    padding: 0.5rem 0 0.8 0;
+    padding: 0.5rem 0 0.8rem 0;
     display: flex;
     gap: 1em;
     border-bottom: 1px solid var(--bs-grey-3);
 }
 
-.alert h3 {
+.alerts h3 {
     margin: 0;
     font-size: 1.2em;
 }
 
-.alert p {
+.alerts p {
     margin: 0;
 }
 
-.alert svg {
+.alerts svg {
     height: 30px;
     width: 30px;
     margin: 0.25;
     flex: 0 0 auto;
+}
+
+/* visitor styles*/
+
+.visitor > details > ul {
+    list-style: none;
+    padding: 0;
+}
+
+.visitor > details li {
+    border-bottom: 1px solid var(--bs-grey-3);
 }
