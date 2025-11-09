@@ -16,7 +16,7 @@ function setHeaderInfo(data) {
 
     document.querySelector("head > title").textContent = data.fullName;
     document.querySelector(".hero-banner > img").src = data.images[0].url;
-    let heroText = document.querySelector(".hero-text");
+    let heroText = document.querySelector(".hero-");
     heroText.innerHTML = parkInfoTemplate(data);
 }
 
