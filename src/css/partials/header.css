@@ -1,6 +1,4 @@
 header {
-  display: grid;
-  grid-template-rows: 25% 25% 25% 25%;
   background-color: var(--bs-black);
 }
 
@@ -53,7 +51,7 @@ header {
 .hero-text {
 grid-column: 1/2;
 grid-row: 2/3;
-background-color: rgba(0, 0, 0, 0.7);
+background-color: transparent;
 color: white;
 padding: 0.5em 1em;
 }

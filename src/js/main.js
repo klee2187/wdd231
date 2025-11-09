@@ -16,7 +16,8 @@ function setHeaderInfo(data) {
 
     document.querySelector("head > title").textContent = data.fullName;
     document.querySelector(".hero-banner > img").src = data.images[0].url;
-    document.querySelector(".hero-text").innerHTML = parkInfoTemplate(data);
+    let heroText = document.querySelector(".hero-text");
+    heroText.innerHTML = parkInfoTemplate(data);
 }
 
 function setupMenuToggles() {
