@@ -31,10 +31,12 @@ function setActivities(activities) {
     activitiesContainer.insertAdjacentHTML("afterbegin", html);
 }
 
+
+
 async function init() {
     const parkData = await getParkData();
     const alerts = await getParkAlerts(parkData.parkCod);
-    const visitorCenters = await getParkVisitorCenters(parkData.parkCode)
+    const visitorCenters = await getParkVisitorCenters(parkData.parkCode);
     setHeaderFooter(parkData);
     setAlerts(alerts);
     setVisitorCenters(visitorCenters);

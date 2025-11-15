@@ -8,10 +8,6 @@
   font-weight: normal;
 }
 
-.intro p {
-  font-family: var(--bs-font-sans-serif);
-}
-
 .intro > h1 {
   padding: 1rem;
   font-family: var(--bs-font-serif);
@@ -20,7 +16,6 @@
 
 .info {
   padding: 1em;
-  gap: 20px;
   display: flex;
   flex-direction: column;
   gap: 1em;

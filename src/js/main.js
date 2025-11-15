@@ -1,3 +1,4 @@
+
 import { 
     getParkData, 
     getInfoLinks
@@ -16,7 +17,7 @@ function setHeaderInfo(data) {
 
     document.querySelector("head > title").textContent = data.fullName;
     document.querySelector(".hero-banner > img").src = data.images[0].url;
-    let heroText = document.querySelector(".hero-");
+    let heroText = document.querySelector(".hero-text");
     heroText.innerHTML = parkInfoTemplate(data);
 }
 
@@ -34,7 +35,7 @@ function setupMenuToggles() {
 }
 
 function setParkIntro(data) {
-    const parkIntro = document.querySelector(".intro");
+    let parkIntro = document.querySelector(".intro");
 
     parkIntro.innerHTML = `<h1>${data.fullname}</h1>
     <p>${data.description}</p>`;
@@ -63,22 +64,67 @@ function setHeaderFooter(data) {
 
 function enableNavigation() {
     const menuButton = document.querySelector("#global-nav-toggle");
+    const subMenuToggles = document.querySelectorAll(
+        ".global-nav__split-button__toggle"
+    )
+
     menuButton.addEventListener("click", (ev) => {
-        let target = ev.target;
 
-    document.querySelector(".global-nav").classList.toggle("show");
+        document.querySelector(".global-nav").classList.toggle("show");
 
-    if (target.tagName != "BUTTON" ) {
-        target = target.closest("button");
-    }
-    if(document.querySelector(".global-nav").classList.contains("show")) {
-        target.setAttribute("aria-expanded", "true");
-    } else {
-        target.setAttribute("aria-expanded", "false");
-    }
-    console.log("toggle");
+        if(document.querySelector(".global-nav").classList.contains("show")) {
+            menuButton.setAttribute("aria-expanded", "true");
+        } else {
+            menuButton.setAttribute("aria-expanded", "false");
+        }
+        console.log("toggle");
     });
+    subMenuToggles.forEach((toggle) => {
+        toggle.addEventListener("click", (ev) => {
+            ev.currentTarget
+                .closest("li")
+                .querySelector(".global-nav__submenu")
+                .classList.toggle("show");
+            ev.currentTarget.querySelector(".icon").classList.toggle("rotate");
+        })
+    })
 }
+
+function mainMenuHandler(ev) {
+  document.querySelector(".global-nav").classList.toggle("show");
+
+  if (document.querySelector(".global-nav").classList.contains("show")) {
+    ev.target.setAttribute("aria-expanded", true);
+
+  } else {
+    ev.target.setAttribute("aria-expanded", false);
+  }
+
+  console.log("toggle");
+}
+
+function subMenuHandler(ev) {
+  
+  ev.currentTarget
+    .closest("li")
+    .querySelector(".global-nav__submenu")
+    .classList.toggle("show");
+  ev.currentTarget.querySelector(".icon").classList.toggle("rotate");
+}
+
+export default function enableNavigation() {
+  const menuButton = document.querySelector("#global-nav-toggle");
+  const subMenuToggles = document.querySelectorAll(
+    ".global-nav__split-button__toggle"
+  );
+  
+  menuButton.addEventListener("click", mainMenuHandler);
+  subMenuToggles.forEach((toggle) => {
+    toggle.addEventListener("click", subMenuHandler);
+  });
+}
+
+ 
 
 async function init() {
     try {
